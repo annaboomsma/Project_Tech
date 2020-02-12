@@ -1,0 +1,19 @@
+{
+  "name": "project_tech",
+  "version": "1.0.0",
+  "description": "Boilerplate for my dating app feature.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/admirai/Project_Tech.git"
+  },
+  "author": "Isabel Admiraal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/admirai/Project_Tech/issues"
+  },
+  "homepage": "https://github.com/admirai/Project_Tech#readme"
+}
