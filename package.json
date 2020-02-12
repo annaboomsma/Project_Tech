@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/admirai/Project_Tech#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "camelcase-keys": "^6.1.2",
+    "express": "^4.17.1",
+    "gm": "^1.23.1"
   }
 }
