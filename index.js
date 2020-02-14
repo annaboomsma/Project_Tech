@@ -2,16 +2,14 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// GET method route
-// When user route is http://localhost:300 -> respond with text.
-app.get('/', (req, res) => res.send('Week 1 exercise: serve'));
-app.get('/about', (req,res) => res.send('About my company'));
-app.get('/contact', (req,res) => res.send('Contact us!'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
-
-//Route paths
-
-// When http://localhost:3000/static we can serve every file from the public directory
+// Serve static files from the folder  public
+// Load the files that are in the public directory from the /static path
 app.use('/static', express.static('public'));
+
+// load index.html when user requests /route
+app.get('/', function(req, res) {
+    res.sendFile(path.join('/index.html'));
+});
