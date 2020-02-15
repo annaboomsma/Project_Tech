@@ -9,10 +9,11 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 // Serve static files from the folder  public
 // Load the files that are in the public directory from the /static path
 app.use('/static', express.static('public'));
+app.use('/', express.static('public'));
 
 // load index.html when user requests /route
 app.get('/', function(req, res) {
-    res.sendFile(path.join('/index.html'));
+    res.sendFile(path.join('/Public/index.html'));
 });
 
 app.get('/contact', (req, res) => {
