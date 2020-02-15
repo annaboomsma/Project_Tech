@@ -27,4 +27,4 @@ app.get('/about', (req, res) => {
 // Return text to camelcase and console.log it.
 var camelCase = camelcaseKeys({'foo-bar': true});
 console.log(camelCase);
-console.log(camelCase('Project-Tech'));
+console.log(camelcaseKeys('Project-Tech'));
