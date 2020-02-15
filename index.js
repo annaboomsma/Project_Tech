@@ -15,6 +15,16 @@ app.get('/', function(req, res) {
     res.sendFile(path.join('/index.html'));
 });
 
+app.get('/contact', (req, res) => {
+    res.send('Contact us!')
+})
+
+app.get('/about', (req, res) => {
+    res.send('About me')
+})
+
+
 // Return text to camelcase and console.log it.
 var camelCase = camelcaseKeys({'foo-bar': true});
 console.log(camelCase);
+console.log(camelCase('Project-Tech'));
