@@ -1,4 +1,5 @@
 const express = require('express');
+const camelcaseKeys = require('camelcase-keys');
 const app = express();
 const port = 3000;
 
@@ -13,3 +14,7 @@ app.use('/static', express.static('public'));
 app.get('/', function(req, res) {
     res.sendFile(path.join('/index.html'));
 });
+
+// Return text to camelcase and console.log it.
+var camelCase = camelcaseKeys({'foo-bar': true});
+console.log(camelCase);
