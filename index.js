@@ -1,5 +1,5 @@
 const express = require('express');
-const camelcaseKeys = require('camelcase-keys');
+const camelCase = require('camelcase');
 const app = express();
 const port = 3000;
 
@@ -25,6 +25,4 @@ app.get('/about', (req, res) => {
 
 
 // Return text to camelcase and console.log it.
-var camelCase = camelcaseKeys({'foo-bar': true});
-console.log(camelCase);
-console.log(camelcaseKeys('Project-Tech'));
+console.log(camelCase('Hey-Isabel'));
