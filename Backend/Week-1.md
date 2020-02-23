@@ -40,9 +40,9 @@ Response:
 - res.render
 - res.redirect
 
-##### Express is dus een hulpmiddel om deze communicatie te laten verlopen.
+Express is dus een hulpmiddel om deze communicatie te laten verlopen.
+De eerste twee principes waar we kennis mee maken en oefeningen mee moeten doen zijn: **routing and serving.**
 
-De eerste twee principes waar we kennis mee maken en oefeningen mee moeten doen zijn: **routing and serving.
 ### Routing
 
 Routing refers to determining how an application responds to a client request to a particular endpoint, which is a URI (or path) and a specific HTTP request method (GET, POST, and so on).
