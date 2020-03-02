@@ -26,11 +26,8 @@ app.get('/contact', (req, res) => {
 })
 
 // app.get('/about', (req, res) => {
-//     res.send('About me')
-    
+//     res.send('About me')    
 // })
-
-
 // Return text to camelcase and console.log it.
 //console.log(camelCase('Hey-Isabel'));
 
@@ -55,6 +52,7 @@ app.get('/about', (req, res) => {
 
 
 app.get('/isabel', function(req, res) {
+    // Data to be displayed in ejs template.
     var matches = [
         { name: 'Jason', festival: 'Amsterdam open Air' },
         { name: 'Justin', festival: 'Mystic garden' },
