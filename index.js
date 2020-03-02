@@ -3,13 +3,18 @@ const camelCase = require('camelcase');
 const app = express();
 const port = 3000;
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
 // Serve static files from the folder  public
 // Load the files that are in the public directory from the /static path
-app.use('/static', express.static('public'));
-app.use('/', express.static('public'));
+// app.use('/static', express.static('public'));
+// app.use('/', express.static('public'));
+
+app.use(express.static(__dirname + '/public'));
 
 // load index.html when user requests /route
 app.get('/', function(req, res) {
@@ -26,16 +31,37 @@ app.get('/contact', (req, res) => {
 // })
 
 
+// Return text to camelcase and console.log it.
+//console.log(camelCase('Hey-Isabel'));
+
 
 // WEEK 2
 
-// Wanneer /about wordt gerequest, log dan de query informatie die is meegestuurd
+// Stuur verschillende soorten files mee, bij verschillende sorten routes.
+// Send mp3 file instead of html file
+app.get('/mp3', (req, res) => {
+    const file = __dirname + '/Public/mp3/audio.mp3';
+    res.download(file);
+   
+})
+
+
+// Wanneer /about wordt gerequest, log dan de query informatie die is meegestuurd.
+// Log the query data.
 app.get('/about', (req, res) => {
     res.send('About me')
     console.log(req.query);
 })
 
 
-
-// Return text to camelcase and console.log it.
-//console.log(camelCase('Hey-Isabel'));
+app.get('/isabel', function(req, res) {
+    var matches = [
+        { name: 'Jason', festival: 'Amsterdam open Air' },
+        { name: 'Justin', festival: 'Mystic garden' },
+        { name: 'David', festival: 'Verknipt' }
+    ];
+    
+    res.render('pages/index', {
+        matches: matches
+    });
+});
