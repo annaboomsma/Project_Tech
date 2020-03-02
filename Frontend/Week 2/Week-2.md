@@ -1,7 +1,7 @@
 ## Notes from reading the homework
 
 
-Networks and the internet
+### Networks and the internet
 Computer networks have been around since the 1950s. This startes by putting cables between computers and sending and retrieving data.  However we started connecting the machines all over the world in the 1980.  We converted connecting devices in the same room to connecting devices all over the world.
 
 Computers shoot bits to each other. The computers must know what te bits are representing and know how to interpret them. 
@@ -17,7 +17,7 @@ To let a computer listen to multiple kind of communication, each listener gets a
 All other computer can connect to the machine using the correct port number. When the device is listening to that port, the connection is created. -> Now the connecting computer is a client.
 
 
-Web
+### Web
 
 The world wide web is a set of protocols and formats that make it possible for us to visit web pages in the browser. 
 
@@ -37,7 +37,7 @@ To get rid of al those chaotic numbers, we can buy and set domain names.
 3. Server send back the document and visually displays it.
 
 
-HTML
+### HTML
 
 HTML: Hypertext Markup Language This is the document format used for web pages. An HTML document contains text, as well as tags that give structure to the text, describing things such as links, paragraphs, and headings.
 
@@ -54,7 +54,7 @@ Define what the element purpose / is designed for. Every tag is opened opening <
 Some opening tags contain extra data. Like name or types. These are called attributes. Some tags need extra info so we give it to them with the use of attributes.  
 <script> Allows the html page to make use of a script. The script will run as soon as <script> is read by the browser. Script gets the attribute src, for linking the script.js file that you created. It always needs to be closed with </script> Otherwise the whole page will be interpreted as script.  Also some attributes can contain a javascript program. <button> tag has an on click attribute, the value will run whenever the button is clicked.   
 
-The DOCUEMNT OBJECT MODEL 
+### The DOCUEMNT OBJECT MODEL 
 DOM
 
 The browser receives a web page in html text and processes it. The browser build a model of the structure and visually display the page on screen. This representation is already integrated in javascript. 	Its a readable and editable (live) data structure.
@@ -85,38 +85,33 @@ insertBefore -> inserts the node given as the first argument 
 Replace:
 replaceChild -> replace child node with other
 
-Create node:
+#### Create node:
 document.createTextNode -> adding a new text node, insert to the document. 
-
 Collection:Array.from. ->convert the collection to a real array
-
-
 Create element:document.createElement ->  takes a tag name and returns a new empty node of the given type
 
+### ATTRIBUTES
+Html allows it to set any attribute you want on nodes.
+Use getAttribute and setAttribute to create and acces them in script.
 
-
-ATTRIBUTES
-
-Html allows it to set any attribute you want on nodes.  Use getAttribute and setAttribute to create and acces them in script.
-
- 
-LAYOUT The use of different elements effects the layout of the html. Paragraphs or headings take op the whole width, -> block elements
+### LAYOUT
+The use of different elements effects the layout of the html. Paragraphs or headings take op the whole width, -> block elements
 While links and storing elements are inline elements.
 You can also change positions and heights in javascript by 
 offsetWidth and offsetHeight. But its preferable to use css for style and javascript for dynamic/interaction and not for the style of the page. 
 
-STYLING
+### STYLING
 We can use inline css to style the elements. Like using 
 <p><a href="." style="color: green">Green link</a></p>
 This is inline css, like the teachers told us on CMD, the right way of styling your page is using css for this. Not inline css in your html document.
 
 CSS stands for Cascading Style Sheets
-“The cascading in the name refers to the fact that multiple such rules are combined to produce the final style for an element”  QUERY SELECTORS
+“The cascading in the name refers to the fact that multiple such rules are combined to produce the final style for an element”
+### QUERY SELECTORS
 Returns all elements.
 querySelectorAll -> Takes a selector string and returns a NodeList containing all the elements that it matches. (Not live)
 
-
-POSITIONING AND ANIMATING
+### POSITIONING AND ANIMATING
 We can use the position property to create animation.
 We change te static status to relative, to make it dynamic on the page. With the use of the animation- properties we can create and run little animations on the html. The article talks about requestAnimationFrame. But I prefer to use css keyframes to control my animations.
 
