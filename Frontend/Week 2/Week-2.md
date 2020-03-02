@@ -38,48 +38,37 @@ To get rid of al those chaotic numbers, we can buy and set domain names.
 
 
 ### HTML
-
 HTML: Hypertext Markup Language This is the document format used for web pages. An HTML document contains text, as well as tags that give structure to the text, describing things such as links, paragraphs, and headings.
-
-
 The tags, wrapped in angle brackets (< and >, the symbols for less than and greater than), provide information about the structure of the document.
-
 <!doctype html>, tells the browser to interpret the page as a HTML.
-
 Head: info about the document (title and links to css/javascript)
-Body: contains the document itself with the use of tags. (<h1> text headings.) 
+Body: contains the document itself with the use of tags. (<h1 text headings.)
 Tags:
 Define what the element purpose / is designed for. Every tag is opened opening < and closed > closing tag.
 
 Some opening tags contain extra data. Like name or types. These are called attributes. Some tags need extra info so we give it to them with the use of attributes.  
 <script> Allows the html page to make use of a script. The script will run as soon as <script> is read by the browser. Script gets the attribute src, for linking the script.js file that you created. It always needs to be closed with </script> Otherwise the whole page will be interpreted as script.  Also some attributes can contain a javascript program. <button> tag has an on click attribute, the value will run whenever the button is clicked.   
 
-### The DOCUEMNT OBJECT MODEL 
-DOM
-
+### The DOCUMENT OBJECT MODEL 
 The browser receives a web page in html text and processes it. The browser build a model of the structure and visually display the page on screen. This representation is already integrated in javascript. 	Its a readable and editable (live) data structure.
-
 Structure 
--Html
- -head
-   -body open
-    - p
-   -body closed
- - footer
+- Html
+- head
+- body open
+- p
+- body closed
+- footer
 
 
 A tree structure is representable for the DOM browser document structure. “Each node may refer to other nodes, children, which in turn may have their own children. This shape is typical of nested structures where elements can contain subelements that are similar to themselves.”
 This branch structure is the main similarity between a tree and the DOM . 
 Finding elements
-
 For searching through all these endless branches, we can use these different pieces of code: 
 -document.body.getElementsByTagName("a")[0];
 -document.getElementById("gertrude"); - document.getElementByClassName(“gertrude");  
 
-
- The DOM structure is editable. We can change the paren-child relationship ships.
+The DOM structure is editable. We can change the paren-child relationship ships.
 This is possible by using: 
-
 Add:  appendChild -> sets at end of list of children
 insertBefore -> inserts the node given as the first argument 
 Replace:
