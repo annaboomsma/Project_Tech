@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head'); -%>
+</head>
+<body>
+
+  <form action=/ method=post>
+    <label>Title <input name=title></label>
+    <label>
+      Name
+      <input name=name>
+    </label>
+    <label>
+      Age
+      <input name=age>
+    </label>
+    <label>
+      About myself
+      <textarea
+        name=description
+        rows=5
+      ></textarea>
+    </label>
+    <button>Add</button>
+  </form>
+  
+        
+</body>
+<footer>
+    <%- include('partials/footer'); -%>
+</footer>
+</html>

@@ -1,72 +1,60 @@
 const express = require('express');
 const camelCase = require('camelcase');
+const bodyParser = require('body-parser');
+const slug = require('slug');
+const multer = require('multer');
 const app = express();
+
+
+
+
 const port = 3000;
+// const upload = multer({dest: '/uploads'})
+
 
 // set the view engine to ejs
-app.set('view engine', 'ejs');
+app
+    .use(express.static(__dirname + '/public'))
+    .use(bodyParser.urlencoded({extended: true}))
+    .set('view engine', 'ejs')
+    .get('/', users)
+    .get('/:id',user);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
-
-app.use(express.static(__dirname + '/public'));
-
-
-// WEEK 2
-
-// Stuur verschillende soorten files mee, bij verschillende sorten routes.
-// Send mp3 file instead of html file
-app.get('/mp3', (req, res) => {
-    const file = __dirname + '/Public/mp3/audio.mp3';
-    res.download(file);
-   
-})
-
-
-// Wanneer /about wordt gerequest, log dan de query informatie die is meegestuurd.
-// Log the query data.
-app.get('/about', (req, res) => {
-    res.send('About me')
-    console.log(req.query);
-})
-
-
-app.get('/', function(req, res) {
-    // Data to be displayed in ejs template.
-    var matches = [
-        { name: 'Jason', festival: 'Amsterdam open Air' },
-        { name: 'Justin', festival: 'Mystic garden' },
-        { name: 'David', festival: 'Verknipt' }
-    ];
     
-    res.render('pages/index', {
-        matches: matches
-    });
-});
 
 
+// //  WEEK 3
 
 
+const profiles = [
+    {
+      id: 'isabel-admiraal',
+      name: 'Isabel Admiraal',
+      residence: 'Alkmaar',
+      description: 'Love for hip-hop and r&b'
+    },
+    {
+      id: 'esmay-baay',
+      name: 'Esmay Baay',
+      residence: 'Alkmaar',
+      description: 'Scorpio who is enjoying life'
+    }
+  ]
+
+  function users(req, res) {
+    res.render('pages/users', {data: profiles})
+
+  }
+
+function user(req,res ,next){
+//console.log(req.params.id)
+//const profile =  req.params.id;
+const profile = profiles.find(user=>user.id===req.params.id)
+res.render('pages/profile', {info : profile});
+
+}
+  
+  
+  app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
-// WEEK 1, old homework
-
-// Serve static files from the folder  public
-// Load the files that are in the public directory from the /static path
-// app.use('/static', express.static('public'));
-// app.use('/', express.static('public'));
-
-// load index.html when user requests /route
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join('/Public/index.html'));
-// });
-
-// app.get('/contact', (req, res) => {
-//     res.send('Contact us!')
-// })
-
-// app.get('/about', (req, res) => {
-//     res.send('About me')    
-// })
-// Return text to camelcase and console.log it.
-//console.log(camelCase('Hey-Isabel'));

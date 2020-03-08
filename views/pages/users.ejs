@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head'); -%>
+</head>
+<body>
+    <h1>Users</h1>
+<% for (var index = 0; index < data.length; index++) { %>
+  <h2>
+    <a href="/<%= data[index].id %>">
+      <%= data[index].name %>
+    </a>
+  </h2>
+  <p><%= data[index].residence %></p>
+<% } %>
+
+</body>
+<footer>
+    <%- include('partials/footer'); -%>
+</footer>
+</html>
