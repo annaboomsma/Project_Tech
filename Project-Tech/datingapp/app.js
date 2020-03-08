@@ -17,8 +17,3 @@ app.get('/', function(req, res) {
 app.get('/edit', function(req, res) {
     res.sendFile(path.join('/public/edit.html'));
 });
-
-document.querySelector('button').addEventListener('click', (e)=>{
-    console.log(e.target)
-    console.log(this)
-})

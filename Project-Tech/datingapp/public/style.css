@@ -15,7 +15,6 @@ html {
 }
 
 body {
-/* // feedback */
     max-width: 400px;
 
 }
@@ -68,6 +67,7 @@ img:first-of-type {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
 
 }
 
@@ -75,14 +75,16 @@ img:first-of-type {
     color: white;
     margin: auto;
     margin-left: 10px;
+    padding: 5px;
 }
 
 .info p {
     margin: auto;
-    margin-left: 10px;
+    margin-left: 15px;
     text-align: left;
-    margin-top: 5px;
     font-size: 20px;
+    padding: 1px;
+    font-weight: 50px;
 
 }
 
@@ -160,27 +162,36 @@ section div h4:nth-child(3) {
 
 form {
     margin: auto;
-    margin-top: 30px;
+    margin-top: 50px;
     width: 85%;
     display: flex;
     flex-direction: column;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0px 12px 30px #000;
-
+    height: 400px;
+    align-items: flex-start;
+    
+   
+    
 
 
 }
 
 form fieldset {
     border: 0;
+    display: flex;
+    flex-direction: column;
+    
+    
+    
 }
 
 form legend {
-    margin: auto;
+   
     font-size: 20px;
     font-weight: bold;
-    padding: 10px;
+  
 
 }
 
@@ -188,22 +199,21 @@ form legend {
 label {
     color: black;
     font-weight: 500;
-    font-size: 20px;
-    margin: auto;
+    font-size: 16px;
+   
 
 }
 
 form input {
-    margin: auto;
-    margin-top: 20px;
+    
     border-color: rgba(0, 0, 0, 10%);
     height: 20px;
+    
 
 }
 
 #genre {
-    margin: auto;
-    margin-top: 20px;
+   
     border-color: rgba(0, 0, 0, 10%);
     height: 20px;
 }
