@@ -2,7 +2,7 @@ const express   = require('express')
 const router    = new express.Router()
 const slug = require('slug');
 
-const profiles = [
+let profiles = [
     {
       id: 'isabel-admiraal',
       name: 'Isabel Admiraal',
@@ -19,7 +19,7 @@ const profiles = [
 
 router  
     .get('/', (req,res)=>{
-        res.render()
+        res.render('pages/upload');
     })
 
     .get('/users', (req,res)=>{
@@ -53,13 +53,21 @@ router
         res.redirect('/user/' + id)
     })
 
-    .post ('/update', (req,res) =>{
-        const id =  req.params.id;
-        const profile = profiles.find(user=>user.id===id)
     
-         res.render('pages/profile', {info : profile});
+    .post('/user/:id', (req,res)=>{
+        var id = slug(req.body.name).toLowerCase()
+
+        profiles.push({
+            id: id,
+            name: req.body.name,
+            residence: req.body.residence,
+            description: req.body.description
+        })
+      
+        res.redirect('/user/' + id)
     })
 
+    
 
 
 module.exports = router
