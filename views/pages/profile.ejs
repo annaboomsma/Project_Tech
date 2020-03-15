@@ -4,18 +4,26 @@
     <%- include('partials/head'); -%>
 </head>
 <body>
-    
-
-      <h2>
-        <%= info.name %>
-      </h2>
-      <h2>
-        <%= info.residence %>
-      </h2>
-      <h2>
-        <%= info.description %>
-      </h2>
       
+      <form action=/update method=post>
+        <label>
+          Name
+          <input name=name value=" <%= info.name %>">
+        </label>
+        <label>
+          Age
+          <input name=residence value=" <%= info.residence %>">
+        </label>
+        <label>
+          About myself
+          <textarea
+            name=description
+            rows=5
+            aria-valuetext=" <%= info.description %>"
+          ></textarea>
+        </label>
+        <button>Update</button>
+      </form>
       
 </body>
 <footer>

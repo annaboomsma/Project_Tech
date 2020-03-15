@@ -16,7 +16,7 @@ const profiles = [
       description: 'Scorpio who is enjoying life'
     }
   ]
-  
+
 router  
     .get('/', (req,res)=>{
         res.render()
@@ -51,6 +51,13 @@ router
         })
       
         res.redirect('/user/' + id)
+    })
+
+    .post ('/update', (req,res) =>{
+        const id =  req.params.id;
+        const profile = profiles.find(user=>user.id===id)
+    
+         res.render('pages/profile', {info : profile});
     })
 
 
