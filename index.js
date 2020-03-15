@@ -1,8 +1,7 @@
 const express = require('express');
 const camelCase = require('camelcase');
 const bodyParser = require('body-parser');
-const slug = require('slug');
-const multer = require('multer');
+const routes = require('./routes.js')
 const app = express();
 const port = 3001;
 
@@ -31,56 +30,16 @@ app
     .use(express.static(__dirname + '/public'))
     .use(bodyParser.urlencoded({extended: true}))
     .set('view engine', 'ejs')
-    .get('/users', users)
-    .get('/user/:id',user)
-    .get('/signup', form)
-    .post('/signup', create);
+    // .get('/users', users)
+    // .get('/user/:id',user)
+    // .get('/signup', form)
+    // .post('/signup', create);z
+    .use(routes)
 
 
 
+// //  WEEK 4
 
-// //  WEEK 3
-
-function form(req, res) {
-    res.render('pages/upload');
-}
-
-
-function users(req, res) {
-    res.render('pages/users', {data: profiles})
-    //res.send(profiles)
-}
-
-function create(req, res) {
-  var id = slug(req.body.name).toLowerCase()
-
-  profiles.push({
-      id: id,
-      name: req.body.name,
-      residence: req.body.residence,
-      description: req.body.description
-  })
-
-  res.redirect('/user/' + id)
-}
-
-function user(req,res){
-    const id =  req.params.id;
-    const profile = profiles.find(user=>user.id===id)
-
-     res.render('pages/profile', {info : profile});
-    //res.send(profile)
-}
-
-
-// function edit(req,res){
-//   const id =  req.params.id;
-//   const profile = profiles.find(user=>user.id===id)
-
-//    res.render('pages/edit_profile', {title: 'Edit profile' ,info : profile});
-//   //res.send(profile)
-//   res.redirect('/user/edit' + id)
-// }
 
   
   app.listen(port, () => console.log(`Example app listening on port ${port}!`));
