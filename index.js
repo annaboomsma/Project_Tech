@@ -21,11 +21,17 @@ app
     // .get('/user/:id',user)
     // .get('/signup', form)
     // .post('/signup', create);
+
+    // use routes.js
     .use(routes)
 
 
 
-// //  WEEK 4
+
+
+
+
+
 
 
   
