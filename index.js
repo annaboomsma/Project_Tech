@@ -6,33 +6,24 @@ const multer = require('multer');
 const routes = require('./routes.js')
 const app = express();
 const port = 3001;
+const mongo = require('mongodb');
+require('dotenv').config();
+let url =  process.env.DB_URL;
 
 
-
-// const upload = multer({dest: '/uploads'})
-
-
-// set the view engine to ejs
 app
     .use(express.static(__dirname + '/public'))
     .use(bodyParser.urlencoded({extended: true}))
     .set('view engine', 'ejs')
-    // .get('/users', users)
-    // .get('/user/:id',user)
-    // .get('/signup', form)
-    // .post('/signup', create);
-
-    // use routes.js
     .use(routes)
 
+   
+    mongo.MongoClient.connect(url, function (err, client) {
+      if (err) {
+        throw err;
+      }
+      db = client.db(process.env.DB_NAME);
+      console.log('Connected to database');
 
-
-
-
-
-
-
-
-
-  
+    })
   app.listen(port, () => console.log(`Example app listening on port ${port}!`));
