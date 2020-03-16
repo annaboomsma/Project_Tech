@@ -5,26 +5,8 @@
 </head>
 <body>
 
-      
-  <form action='/user/<%=info.id%>' method=post>
-    <label>
-      Name
-      <input name=name value=" <%= info.name %>">
-    </label>
-    <label>
-      Residence
-      <input name=residence value=" <%= info.residence %>">
-    </label>
-    <label>
-      About myself
-      <textarea
-        name=description
-        rows=5
-        aria-valuetext=" <%= info.description %>"
-      ></textarea>
-    </label>
-    <button>Update</button>
-  </form>
+    <h1><%= data.name%></h1>
+    
   
       
 </body>
