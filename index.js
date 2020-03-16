@@ -3,7 +3,6 @@ const camelCase = require('camelcase');
 const bodyParser = require('body-parser');
 const slug = require('slug');
 const multer = require('multer');
-//const routes = require('./routes.js')
 const app = express();
 const port = 3001;
 const mongo = require('mongodb');
@@ -47,9 +46,10 @@ function insert(req, res, next) {
 
 function profile(req, res, next) {
   const id = req.params.id
-  db.collection('users_data').findOne({
-    id: id
+  db.collection('user_data').findOne({
+    _id: mongo.ObjectID(id)
   }, done)
+
 
 
   function done(err, data) {
@@ -58,23 +58,17 @@ function profile(req, res, next) {
     } else {
       res.render('pages/profile', {
         data: data
-      });
+      })
     }
   }
 }
 
+
+
+
 function form(req, res) {
   res.render('pages/upload');
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -86,12 +80,6 @@ mongo.MongoClient.connect(url, function (err, client) {
 
 
 })
-
-
-
-
-
-
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
