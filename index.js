@@ -49,15 +49,18 @@ function insert(req, res, next) {
 
 function update(req, res, next) {
   const id = req.params.id
-  db.collection('user_data').updateOne({
-    "_id": id
-  }, {
-    "$set": {
-      Name: req.body.name
-    }
-  }, complete)
+  db.collection('user_info').updateOne({
+        _id : id
+      }, // Filter
+      {
+        $set: {
+          name: req.body.name
+        }
+      },completed
 
-  function complete(err, data) {
+    )
+
+  function completed(err, data) {
     if (err) {
       next(err)
     } else {
@@ -65,6 +68,23 @@ function update(req, res, next) {
     }
   }
 }
+
+
+
+// function update(req, res, next) {
+//   let id = req.params.id;
+//   console.log(id);
+
+// }
+//   db.collection('user_data').updateOne(
+//     { _id: req.params.id },
+//     {
+//       $set: {
+//         name: req.body.name,
+
+//       }
+//   })
+// }
 
 
 // function update(req, res, next) {
@@ -95,15 +115,13 @@ function profile(req, res, next) {
       next(err);
     } else {
       //res.send(data)
-      console.log(data)
+      //console.log(id)
       res.render('pages/profile', {
         data: data
       })
     }
   }
 }
-
-
 
 
 function edit(req, res, next) {
@@ -118,26 +136,13 @@ function edit(req, res, next) {
       next(err);
     } else {
       //res.send(data)
-      console.log(data)
+
       res.render('pages/edit', {
         data: data
       })
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
