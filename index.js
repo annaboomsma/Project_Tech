@@ -47,11 +47,11 @@ function insert(req, res, next) {
   }
 }
 
+
 function update(req, res, next) {
   const id = req.params.id
-  console.log(id)
   db.collection('user_info').updateOne({
-        _id : id
+        _id : mongo.ObjectID(id)
       }, // Filter
       {
         $set: {
@@ -65,10 +65,39 @@ function update(req, res, next) {
     if (err) {
       next(err)
     } else {
-      res.redirect('/user/' + data.insertedId)
+      res.redirect('/user/'+id)
     }
   }
 }
+
+
+
+
+
+
+
+
+// function update(req, res, next) {
+//   const id = req.params.id
+//   db.collection('user_info').updateOne({
+//         _id : mongo.ObjectID(id)
+//       }, // Filter
+//       {
+//         $set: {
+//           name: req.body.name
+//         }
+//       },completed
+
+//     )
+
+//   function completed(err, data) {
+//     if (err) {
+//       next(err)
+//     } else {
+//       res.redirect('/user/'+id)
+//     }
+//   }
+//}
 
 
 
