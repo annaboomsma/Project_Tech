@@ -7,11 +7,20 @@ const app = express();
 const port = 3001;
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
+const session = require('express-session');
+
 require('dotenv').config();
 let url = process.env.DB_URL;
 
 
 app
+  .use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: process.env.SESSION_SECRET
+  }))
+
+
   .set('view engine', 'ejs')
   .use(express.static(__dirname + '/public'))
   .use(bodyParser.urlencoded({
@@ -23,7 +32,7 @@ app
   .post('/insert', insert)
   .get('/user/:id', profile)
 
-  .get('/user/:id/edit', edit)
+  .get('/user/edit', edit)
   .post('/update/:id', update)
 
 
@@ -51,33 +60,34 @@ function insert(req, res, next) {
 function update(req, res, next) {
   const id = req.params.id
   db.collection('user_data').updateOne({
-        _id : mongo.ObjectID(id)
-      }, // Filter
-      {
-        $set: {
-          name: req.body.name
-          
-        }
-      },completed
+      _id: mongo.ObjectID(id)
+    }, // Filter
+    {
+      $set: {
+        name: req.body.name
 
-    )
+      }
+    }, completed
+
+  )
 
   function completed(err, data) {
     if (err) {
       next(err)
     } else {
-      res.redirect('/user/'+id)
+      res.redirect('/user/' + id)
     }
   }
 }
 
 
 function profile(req, res, next) {
+  req.session.id = req.params.id
+  console.log(req.session.id)
   const id = req.params.id
   db.collection('user_data').findOne({
     _id: mongo.ObjectID(id)
   }, done)
-
 
   function done(err, data) {
     if (err) {
@@ -94,9 +104,11 @@ function profile(req, res, next) {
 
 
 function edit(req, res, next) {
-  const id = req.params.id
+  console.log(req.session.id)
+  if(req.session.id){
+  const id = req.session.id
   db.collection('user_data').findOne({
-    _id: mongo.ObjectID(id)
+    _id: mongo.Object(id)
   }, done)
 
 
@@ -112,10 +124,12 @@ function edit(req, res, next) {
     }
   }
 }
+else{
+  res.redirect('/signup')
+}
 
 
-
-
+}
 
 
 
@@ -127,7 +141,9 @@ function form(req, res) {
 
 
 
-mongo.MongoClient.connect(url,{ useUnifiedTopology: true }, function (err, client) {
+mongo.MongoClient.connect(url, {
+  useUnifiedTopology: true
+}, function (err, client) {
   if (err) {
     throw err;
   }
