@@ -50,12 +50,13 @@ function insert(req, res, next) {
 
 function update(req, res, next) {
   const id = req.params.id
-  db.collection('user_info').updateOne({
+  db.collection('user_data').updateOne({
         _id : mongo.ObjectID(id)
       }, // Filter
       {
         $set: {
           name: req.body.name
+          
         }
       },completed
 
@@ -69,68 +70,6 @@ function update(req, res, next) {
     }
   }
 }
-
-
-
-
-
-
-
-
-// function update(req, res, next) {
-//   const id = req.params.id
-//   db.collection('user_info').updateOne({
-//         _id : mongo.ObjectID(id)
-//       }, // Filter
-//       {
-//         $set: {
-//           name: req.body.name
-//         }
-//       },completed
-
-//     )
-
-//   function completed(err, data) {
-//     if (err) {
-//       next(err)
-//     } else {
-//       res.redirect('/user/'+id)
-//     }
-//   }
-//}
-
-
-
-// function update(req, res, next) {
-//   let id = req.params.id;
-//   console.log(id);
-
-// }
-//   db.collection('user_data').updateOne(
-//     { _id: req.params.id },
-//     {
-//       $set: {
-//         name: req.body.name,
-
-//       }
-//   })
-// }
-
-
-// function update(req, res, next) {
-//   const id = req.params.id
-//   db.collection('user_data').updateOne({
-//     _id: mongo.ObjectID(id)
-//   }, {
-//     $set: {
-//       name: req.body.name,
-//       age: req.body.age
-//     }
-//   })
-
-//   console.log('ISABEL')
-//   console.log(id)
-
 
 
 function profile(req, res, next) {
@@ -188,7 +127,7 @@ function form(req, res) {
 
 
 
-mongo.MongoClient.connect(url, function (err, client) {
+mongo.MongoClient.connect(url,{ useUnifiedTopology: true }, function (err, client) {
   if (err) {
     throw err;
   }
