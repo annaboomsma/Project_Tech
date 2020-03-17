@@ -20,7 +20,10 @@ app
   //.use(routes)  
   .get('/', form)
   .post('/insert', insert)
-  .get("/:id", profile);
+  .get('/user/:id', profile)
+
+  .get('/user/:id/edit', edit)
+  .post('/update', update)
 
 
 
@@ -39,10 +42,46 @@ function insert(req, res, next) {
     if (err) {
       next(err)
     } else {
-      res.redirect('/' + data.insertedId)
+      res.redirect('/user/' + data.insertedId)
     }
   }
 }
+
+function update(req, res, next) {
+  const id = req.params.id
+  db.collection('user_data').updateOne({
+    "_id": id
+  }, {
+    "$set": {
+      Name: req.body.name
+    }
+  }, complete)
+
+  function complete(err, data) {
+    if (err) {
+      next(err)
+    } else {
+      res.redirect('/user/' + data.insertedId)
+    }
+  }
+}
+
+
+// function update(req, res, next) {
+//   const id = req.params.id
+//   db.collection('user_data').updateOne({
+//     _id: mongo.ObjectID(id)
+//   }, {
+//     $set: {
+//       name: req.body.name,
+//       age: req.body.age
+//     }
+//   })
+
+//   console.log('ISABEL')
+//   console.log(id)
+
+
 
 function profile(req, res, next) {
   const id = req.params.id
@@ -51,11 +90,12 @@ function profile(req, res, next) {
   }, done)
 
 
-
   function done(err, data) {
     if (err) {
       next(err);
     } else {
+      //res.send(data)
+      console.log(data)
       res.render('pages/profile', {
         data: data
       })
@@ -66,9 +106,50 @@ function profile(req, res, next) {
 
 
 
+function edit(req, res, next) {
+  const id = req.params.id
+  db.collection('user_data').findOne({
+    _id: mongo.ObjectID(id)
+  }, done)
+
+
+  function done(err, data) {
+    if (err) {
+      next(err);
+    } else {
+      //res.send(data)
+      console.log(data)
+      res.render('pages/edit', {
+        data: data
+      })
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function form(req, res) {
   res.render('pages/upload');
 }
+
+
 
 
 
