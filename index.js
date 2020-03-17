@@ -19,12 +19,12 @@ app
   }))
   //.use(routes)  
   .get('/', form)
+
   .post('/insert', insert)
   .get('/user/:id', profile)
 
   .get('/user/:id/edit', edit)
-  .post('/update', update)
-
+  .post('/update/:id', update)
 
 
 
@@ -49,6 +49,7 @@ function insert(req, res, next) {
 
 function update(req, res, next) {
   const id = req.params.id
+  console.log(id)
   db.collection('user_info').updateOne({
         _id : id
       }, // Filter
