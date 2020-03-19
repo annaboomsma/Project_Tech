@@ -48,5 +48,5 @@ SESS_NAME = ''
 SESS_SECRET  = ''
 ```
  
- ## Licens
+ ## License
  MIT
