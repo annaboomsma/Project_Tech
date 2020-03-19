@@ -15,19 +15,19 @@ const SESS_LIFETIME = 1000 * 60 * 60 * 2
 
 app
   .use(session({
-    name: process.env.SESS_NAME,
+    secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
-    secret: process.env.SESS_SECRET,
     cookie: {
-      maxAge: SESS_LIFETIME,
-
+      secure: false,
+      sameSite: true,
+      maxAge: 3600000
     }
-
   }))
 
   .set('view engine', 'ejs')
-  .use(express.static(__dirname + '/public'))
+  .use("/static", express.static('static'))
+
   .use(bodyParser.urlencoded({
     extended: true
   }))
@@ -56,56 +56,70 @@ function insert(req, res, next) {
     if (err) {
       next(err)
     } else {
+      req.session.user = data.insertedId
       res.redirect('/user/' + data.insertedId)
     }
   }
 }
 
 
+async function profile(req, res) {
+  try {
+    console.log(req.session.user);
+    const user = await db.collection('user_data').findOne({
+      _id: mongo.ObjectID(req.session.user)
+    });
+    res.render('pages/profile', {
+      data: user
+
+    })
+
+  } catch (err) {
+    console.error(err);
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function update(req, res, next) {
   const id = req.params.id
   db.collection('user_data').updateOne({
-        _id : mongo.ObjectID(id)
-      }, // Filter
-      {
-        $set: {
-          name: req.body.name
-          
-        }
-      },completed
+      _id: mongo.ObjectID(id)
+    }, // Filter
+    {
+      $set: {
+        name: req.body.name
 
-    )
+      }
+    }, completed
+
+  )
 
   function completed(err, data) {
     if (err) {
       next(err)
     } else {
-      res.redirect('/user/'+id)
+      res.redirect('/user/' + id)
     }
   }
 }
 
-
-function profile(req, res, next) {
-  const id = req.params.id
-  console.log(req.session)
-  db.collection('user_data').findOne({
-    _id: mongo.ObjectID(id)
-  }, done)
-
-
-  function done(err, data) {
-    if (err) {
-      next(err);
-    } else {
-      //res.send(data)
-      //console.log(id)
-      res.render('pages/profile', {
-        data: data
-      })
-    }
-  }
-}
 
 
 function edit(req, res, next) {
@@ -135,8 +149,6 @@ function edit(req, res, next) {
 
 
 function form(req, res) {
-  req.session.user = mongo.ObjectID(req.params.id)
-  console.log(req.session)
   res.render('pages/upload');
 }
 
@@ -144,7 +156,9 @@ function form(req, res) {
 
 
 
-mongo.MongoClient.connect(url,{ useUnifiedTopology: true }, function (err, client) {
+mongo.MongoClient.connect(url, {
+  useUnifiedTopology: true
+}, function (err, client) {
   if (err) {
     throw err;
   }
