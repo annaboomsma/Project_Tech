@@ -26,17 +26,17 @@ git clone https://github.com/admirai/Project_Tech.git
 cd ../Project_Tech
 ```
 
-**Install the required dependencies in package.json**
+**Install the required dependencies in package.json.**
 
 ```
 npm install
 ```
-**Run the application**
+**Run the application.**
 
 ```
 npm run start
 ```
-**Make sure you inserted your own credentials in the .env file**
+**Make sure you inserted your own credentials in the .env file.**
 
 ```
 PORT = 8000
