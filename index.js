@@ -1,37 +1,47 @@
+// Requiring the dependencies
 const express = require('express');
 const camelCase = require('camelcase');
 const bodyParser = require('body-parser');
 const slug = require('slug');
 const multer = require('multer');
 const app = express();
-const port = 3001;
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-require('dotenv').config();
-let url = process.env.DB_URL;
-const session = require('express-session');
 
+require('dotenv').config();
+
+let url = process.env.DB_URL;
+let db = null
+const session = require('express-session')
+
+// Lifetime of the session
 const SESS_LIFETIME = 1000 * 60 * 60 * 2
 
 app
+  // set ejs view engine
+  .set('view engine', 'ejs')
+
+  // use express session to store session/cookies
   .use(session({
-    secret: 'keyboard cat',
+    name: process.env.SESS_NAME,
     resave: false,
     saveUninitialized: false,
+    secret: process.env.SESS_SECRET,
     cookie: {
-      secure: false,
-      sameSite: true,
-      maxAge: 3600000
+      maxAge: SESS_LIFETIME,
     }
   }))
 
-  .set('view engine', 'ejs')
-  .use("/static", express.static('static'))
+  // Defining the folder where the static files are being stored.
+  .use('/static', express.static('static'))
 
+  // Bodyparser
   .use(bodyParser.urlencoded({
     extended: true
   }))
-  //.use(routes)  
+
+  // Routes
+
   .get('/', form)
 
   .post('/insert', insert)
@@ -43,20 +53,23 @@ app
 
 
 function insert(req, res, next) {
+  // Insert form data into the database
   db.collection('user_data').insertOne({
     name: req.body.name,
-    age: req.body.age,
     residence: req.body.residence,
-    gender: req.body.residence,
-    interest: req.body.interest,
-    music_genre: req.body.genre
+    music_genre: req.body.genre,
+    fav_artist: req.body.artist,
+    description: req.body.description
   }, completed)
 
   function completed(err, data) {
     if (err) {
       next(err)
     } else {
+
+      // Set the req.session.user
       req.session.user = data.insertedId
+      // Redirect to the corresponding profile 
       res.redirect('/user/' + data.insertedId)
     }
   }
@@ -69,6 +82,7 @@ async function profile(req, res) {
     const user = await db.collection('user_data').findOne({
       _id: mongo.ObjectID(req.session.user)
     });
+    // Render profile with the matching data from the database
     res.render('pages/profile', {
       data: user
 
@@ -82,21 +96,6 @@ async function profile(req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function update(req, res, next) {
   const id = req.params.id
   db.collection('user_data').updateOne({
@@ -104,7 +103,11 @@ function update(req, res, next) {
     }, // Filter
     {
       $set: {
-        name: req.body.name
+        // Update the data in database
+        residence: req.body.residence,
+        music_genre: req.body.genre,
+        fav_artist: req.body.artist,
+        description: req.body.description
 
       }
     }, completed
@@ -115,6 +118,7 @@ function update(req, res, next) {
     if (err) {
       next(err)
     } else {
+      // redirect to profile
       res.redirect('/user/' + id)
     }
   }
@@ -168,4 +172,4 @@ mongo.MongoClient.connect(url, {
 })
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(process.env.PORT, () => console.log(`Example app listening on port ${process.env.PORT}!`));

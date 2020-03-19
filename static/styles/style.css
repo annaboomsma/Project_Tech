@@ -57,23 +57,24 @@ footer {
     margin-top: 10px;
 }
 
-button {
+a {
+    margin-right: 5px;
+    margin-bottom: 5px;
     align-self: flex-end;
     background-color: #6a08ba;
+    width:45px;
     height: 100px;
     border-radius: 50%;
     box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.50);
     background-image: url(/static/images/edit.png);
     background-size: 30px  30px ;
     background-repeat: no-repeat;
-    background-position-x: 7px;
-    background-position-y: 5px;
+    background-position-x: 9px;
+    background-position-y: 7px;
+    border: none;
     
 
 
 
 }
 
-button a {
-    text-decoration: none;
-}
