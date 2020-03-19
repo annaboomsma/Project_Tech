@@ -9,9 +9,23 @@ const mongo = require('mongodb');
 const mongoose = require('mongoose');
 require('dotenv').config();
 let url = process.env.DB_URL;
+const session = require('express-session');
 
+const SESS_LIFETIME = 1000 * 60 * 60 * 2
 
 app
+  .use(session({
+    name: process.env.SESS_NAME,
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.SESS_SECRET,
+    cookie: {
+      maxAge: SESS_LIFETIME,
+
+    }
+
+  }))
+
   .set('view engine', 'ejs')
   .use(express.static(__dirname + '/public'))
   .use(bodyParser.urlencoded({
@@ -74,6 +88,7 @@ function update(req, res, next) {
 
 function profile(req, res, next) {
   const id = req.params.id
+  console.log(req.session)
   db.collection('user_data').findOne({
     _id: mongo.ObjectID(id)
   }, done)
@@ -120,6 +135,8 @@ function edit(req, res, next) {
 
 
 function form(req, res) {
+  req.session.user = mongo.ObjectID(req.params.id)
+  console.log(req.session)
   res.render('pages/upload');
 }
 
