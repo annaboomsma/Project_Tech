@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include('partials/head'); -%>
+  <%- include('partials/head'); -%>
+  <link rel="stylesheet" href="/static/styles/login.css">
 </head>
+
 <body>
 
   <form action=/insert method=post>
-    <label>
-      Name
-      <input name=name>
-    </label>
-    <label>
-      Residence
-      <input name=residence>
-    </label>
-    <label>
-      About myself
-      <textarea
-        name=description
-        rows=5
-      ></textarea>
-    </label>
+
+    <legend>Profile information</legend>
+    <fieldset></fieldset>
+    <label>Username</label><br>
+    <input placeholder="username" name=name><br>
+    <label>Residence</label><br>
+    <input placeholder="residence" name=residence><br>
+    <label>Music genre</label><br>
+    <select name=genre id="genre">
+      <option value="pop">Pop</option>
+      <option value="rock">Rock</option>
+      <option value="techno">Techno</option>
+      <option value="rnb">Rnb</option>
+      <option value="hip-Hop">Hip-hop</option>
+      <option value="metal">Metal</option>
+      <option value="dance">Dance</option>
+      <option value="jazz">Jazz</option>
+    </select><br>
+    <label>Favorite artist</label><br>
+    <input name=artist><br>
+    <label>About myself</label><br>
+    <textarea placeholder = "I love to..." name=description rows=5></textarea>
+    </fieldset>
     <button>Add</button>
   </form>
-  
-        
+
+
 </body>
 <footer>
-    <%- include('partials/footer'); -%>
+  <%- include('partials/footer'); -%>
 </footer>
+
 </html>

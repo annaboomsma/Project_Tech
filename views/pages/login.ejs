@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head'); -%>
+    <link rel="stylesheet" href="/public/login.css">
+
+</head>
+<body>
+    <form action="/login" method="post">
+      <label for="user">Users</label>
+      <select name="user" id="user">
+        <% for (let i=0; i < users.length;i++) { %>
+        <option value="<%= users[i]._id %>"><%= users[i].firstName%></option>
+        <% } %>
+      </select>
+      <button type="submit">Login</button>
+    </form>
+  </body>
+<footer>
+    <%- include('partials/footer'); -%>
+</footer>
+</html>
