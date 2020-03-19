@@ -4,6 +4,8 @@
 
 The goal of this project is to learn the  about web development. Working with backend aswell as frontend and at the same time learning about github and their flow. 
 
+Check out the WIKI for my weekly process of project tech!
+
 ## Job Story
 **When I registrated my profile, I want to manage my profile details, so I can express myself on the datingapp.**
 This job story is all about managing your profile. Profile info needs to be `created` , `added`, `updated` and `deleted`
