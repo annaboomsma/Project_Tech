@@ -40,7 +40,7 @@ npm install
 ```
 npm run start
 ```
-**Make sure you inserted your own credentials in the .env file.**
+**Make sure you've created an .env file, and inserted your own credentials.**
 
 ```
 PORT = 8000
