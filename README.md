@@ -2,7 +2,7 @@
 
 ## Project description
 
-The goal of this project is to learn the  about web development. Working with backend aswell as frontend and at the same time learning about github and their flow. 
+The goal of this project is to learn about web development. We are working as backend aswell as frontend developer and learning about github and their flow. 
 
 Check out the WIKI for my weekly process of project tech!
 
