@@ -1,18 +1,16 @@
 // Requiring the dependencies
 const express = require('express');
-const camelCase = require('camelcase');
 const bodyParser = require('body-parser');
-const slug = require('slug');
-const multer = require('multer');
 const app = express();
 const mongo = require('mongodb');
-const mongoose = require('mongoose');
+
 
 require('dotenv').config();
 
 let url = process.env.DB_URL;
 let db = null
 const session = require('express-session')
+
 
 // Lifetime of the session
 const SESS_LIFETIME = 1000 * 60 * 60 * 2

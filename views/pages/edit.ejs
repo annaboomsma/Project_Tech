@@ -5,33 +5,49 @@
     <link rel="stylesheet" href="/static/styles/edit.css">
 </head>
 <body>
-
-  <form action=/update/<%= data._id%> method=post>
-
-    <legend>Profile information</legend>
-    <fieldset>
-    <label><%= data.name%></label><br>
-    <label>Residence</label><br>
-    <input name=residence><br>
-    <label>Music genre</label><br>
-    <select name=genre id="genre">
-      <option value="pop">Pop</option>
-      <option value="rock">Rock</option>
-      <option value="techno">Techno</option>
-      <option value="rnb">Rnb</option>
-      <option value="hip-Hop">Hip-hop</option>
-      <option value="metal">Metal</option>
-      <option value="dance">Dance</option>
-      <option value="jazz">Jazz</option>
-    </select><br>
-    <label>Favorite artist</label><br>
-    <input name=artist><br>
-    <label>About myself</label><br>
-    <textarea placeholder = "I love to..." name=description rows=5></textarea>
-    </fieldset>
-    <button>Edit</button>
-  </form>
     
+  <form action=/update/<%= data._id %> method=post>
+    <h1>Profile infromation</h1>
+    <fieldset>
+      <legend>Personal</legend>
+      <label for="residence">Residence</label>
+      <input type="text" id="residence" name="residence">
+      <label for="about">About myself</label>
+      <textarea placeholder = "I love to..." name=description rows=5 id="about"></textarea>
+    </fieldset>
+    <fieldset>
+      <legend>Music</legend>
+      <h2>Music genres:</h2>
+      <label for="rock">Rock</label>
+      <input type="checkbox" class="radio" id="rock" value="rock">
+      
+      <label  or="pop">Pop</label>
+      <input type="checkbox" class="radio" id="pop" value="pop">
+      
+      <label for="hiphop">Hip hop</label>
+      <input type="checkbox" class="radio" id="hiphop" value="hiphop">
+      
+      <label  or="rnb">Rnb</label>
+      <input type="checkbox" class="radio" id="rnb" value="rnb">
+      
+      <label for="dance">Dance</label>
+      <input type="checkbox" class="radio" id="dance" value="dance">
+      
+      <label for="techno">Techno</label>
+      <input type="checkbox" class="radio" id="techno" value="techno">
+      
+      <label for="jazz">Jazz</label>
+      <input type="checkbox" class="radio" id="jazz" value="jazz">
+      
+      <label for="metal">Metal</label>
+      <input type="checkbox" class="radio" id="metal" value="metal">
+
+      <label for="artist">Favorite artist</label>
+      <input type="text" name="artist" id="artist">
+    </fieldset>
+    <input type="submit" value="Edit">
+
+  </form>
     
   
       
